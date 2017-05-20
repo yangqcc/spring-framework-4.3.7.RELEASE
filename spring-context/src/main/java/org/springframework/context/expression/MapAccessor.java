@@ -27,7 +27,7 @@ import org.springframework.expression.spel.CompilablePropertyAccessor;
 
 /**
  * EL property accessor that knows how to traverse the keys
- * of a standard {@link java.util.Map}.
+ * of a standard {@link Map}.
  *
  * @author Juergen Hoeller
  * @author Andy Clement

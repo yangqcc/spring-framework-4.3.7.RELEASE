@@ -159,7 +159,7 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 	/**
 	 * Remove the given EJB instance.
 	 * @param ejb the EJB instance to remove
-	 * @see javax.ejb.EJBLocalObject#remove()
+	 * @see EJBLocalObject#remove()
 	 */
 	protected void removeSessionBeanInstance(EJBLocalObject ejb) {
 		if (ejb != null && !this.homeAsComponent) {

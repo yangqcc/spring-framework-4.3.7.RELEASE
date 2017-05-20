@@ -33,8 +33,8 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Juergen Hoeller
  * @since 2.0
- * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
- * @see java.util.concurrent.ScheduledExecutorService#scheduleAtFixedRate(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
+ * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(Runnable, long, long, TimeUnit)
+ * @see java.util.concurrent.ScheduledExecutorService#scheduleAtFixedRate(Runnable, long, long, TimeUnit)
  */
 public class ScheduledExecutorTask {
 
@@ -136,7 +136,7 @@ public class ScheduledExecutorTask {
 	 * however, that value should never be specified explicitly in the first place!
 	 * @see #setFixedRate
 	 * @see #isOneTimeTask()
-	 * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(Runnable, long, long, java.util.concurrent.TimeUnit)
+	 * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(Runnable, long, long, TimeUnit)
 	 */
 	public void setPeriod(long period) {
 		this.period = period;
@@ -161,8 +161,8 @@ public class ScheduledExecutorTask {
 	/**
 	 * Specify the time unit for the delay and period values.
 	 * Default is milliseconds ({@code TimeUnit.MILLISECONDS}).
-	 * @see java.util.concurrent.TimeUnit#MILLISECONDS
-	 * @see java.util.concurrent.TimeUnit#SECONDS
+	 * @see TimeUnit#MILLISECONDS
+	 * @see TimeUnit#SECONDS
 	 */
 	public void setTimeUnit(TimeUnit timeUnit) {
 		this.timeUnit = (timeUnit != null ? timeUnit : TimeUnit.MILLISECONDS);
@@ -179,8 +179,8 @@ public class ScheduledExecutorTask {
 	 * Set whether to schedule as fixed-rate execution, rather than
 	 * fixed-delay execution. Default is "false", that is, fixed delay.
 	 * <p>See ScheduledExecutorService javadoc for details on those execution modes.
-	 * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
-	 * @see java.util.concurrent.ScheduledExecutorService#scheduleAtFixedRate(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
+	 * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(Runnable, long, long, TimeUnit)
+	 * @see java.util.concurrent.ScheduledExecutorService#scheduleAtFixedRate(Runnable, long, long, TimeUnit)
 	 */
 	public void setFixedRate(boolean fixedRate) {
 		this.fixedRate = fixedRate;

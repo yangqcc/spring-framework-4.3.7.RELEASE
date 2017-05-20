@@ -179,7 +179,7 @@ public class MBeanServerConnectionFactoryBean
 	 * Lazily creates a {@code JMXConnector} using the configured service URL
 	 * and environment properties.
 	 * @see MBeanServerConnectionFactoryBean#setServiceUrl(String)
-	 * @see MBeanServerConnectionFactoryBean#setEnvironment(java.util.Properties)
+	 * @see MBeanServerConnectionFactoryBean#setEnvironment(Properties)
 	 */
 	private class JMXConnectorLazyInitTargetSource extends AbstractLazyCreationTargetSource {
 

@@ -92,7 +92,7 @@ public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbI
 	 * This overridden lookup implementation performs a narrow operation
 	 * after the JNDI lookup, provided that a home interface is specified.
 	 * @see #setHomeInterface
-	 * @see javax.rmi.PortableRemoteObject#narrow
+	 * @see PortableRemoteObject#narrow
 	 */
 	@Override
 	protected Object lookup() throws NamingException {
@@ -232,7 +232,7 @@ public abstract class AbstractRemoteSlsbInvokerInterceptor extends AbstractSlsbI
 	 * Remove the given EJB instance.
 	 * To be invoked by concrete remote SLSB invoker subclasses.
 	 * @param ejb the EJB instance to remove
-	 * @see javax.ejb.EJBObject#remove
+	 * @see EJBObject#remove
 	 */
 	protected void removeSessionBeanInstance(EJBObject ejb) {
 		if (ejb != null && !this.homeAsComponent) {

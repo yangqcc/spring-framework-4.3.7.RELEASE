@@ -98,7 +98,7 @@ public abstract class JRubyScriptUtils {
 	}
 
 	/**
-	 * Initializes an instance of the {@link org.jruby.Ruby} runtime.
+	 * Initializes an instance of the {@link Ruby} runtime.
 	 */
 	@SuppressWarnings("unchecked")
 	private static Ruby initializeRuntime() {

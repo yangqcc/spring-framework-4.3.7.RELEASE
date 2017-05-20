@@ -101,7 +101,7 @@ class ConfigurationClassParser {
 	private static final PropertySourceFactory DEFAULT_PROPERTY_SOURCE_FACTORY = new DefaultPropertySourceFactory();
 
 	private static final Comparator<DeferredImportSelectorHolder> DEFERRED_IMPORT_COMPARATOR =
-			new Comparator<ConfigurationClassParser.DeferredImportSelectorHolder>() {
+			new Comparator<DeferredImportSelectorHolder>() {
 				@Override
 				public int compare(DeferredImportSelectorHolder o1, DeferredImportSelectorHolder o2) {
 					return AnnotationAwareOrderComparator.INSTANCE.compare(o1.getImportSelector(), o2.getImportSelector());

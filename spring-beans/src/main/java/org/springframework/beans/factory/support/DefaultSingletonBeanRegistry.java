@@ -73,7 +73,6 @@ import org.springframework.util.StringUtils;
 public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
 
 	/**
-	 * ���ڿյ���������ڲ����
 	 * Internal marker for a null singleton object:
 	 * used as marker value for concurrent Maps (which don't support null values).
 	 */
@@ -83,10 +82,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	/** Logger available to subclasses */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/**
-	 * ���浥������bean name-->beanʵ��
-	 * Cache of singleton objects: bean name --> bean instance 
-	 * */
+	/** Cache of singleton objects: bean name --> bean instance */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<String, Object>(256);
 
 	/** Cache of singleton factories: bean name --> ObjectFactory */
@@ -118,14 +114,10 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	/** Map between containing bean names: bean name --> Set of bean names that the bean contains */
 	private final Map<String, Set<String>> containedBeanMap = new ConcurrentHashMap<String, Set<String>>(16);
 
-	/** Map between dependent bean names: bean name --> Set of dependent bean names 
-	 *  A denpend-on B ����ôdependBeanMap���汣��ľ��� B��beanName ��A��beanName������set����
-	 * */
+	/** Map between dependent bean names: bean name --> Set of dependent bean names */
 	private final Map<String, Set<String>> dependentBeanMap = new ConcurrentHashMap<String, Set<String>>(64);
 
-	/** Map between depending bean names: bean name --> Set of bean names for the bean's dependencies 
-	 *   A denpend-on B ����ôdependenciesForBeanMap���汣��ľ��� A��beanName ��B��beanName������set����
-	 * */
+	/** Map between depending bean names: bean name --> Set of bean names for the bean's dependencies */
 	private final Map<String, Set<String>> dependenciesForBeanMap = new ConcurrentHashMap<String, Set<String>>(64);
 
 
@@ -143,7 +135,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * �������¼�����沢ɾ������bean���������м�¼�ĸ��ָ���״̬
 	 * Add the given singleton object to the singleton cache of this factory.
 	 * <p>To be called for eager registration of singletons.
 	 * @param beanName the name of the bean
@@ -159,7 +150,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * ��Ҫ��ʱ����ӵ�����������ȷ�ĵ��������ڵ���ע��ʱ�ᱻ���ã�������ѭ���������⣩
 	 * Add the given singleton factory for building the specified singleton
 	 * if necessary.
 	 * <p>To be called for eager registration of singletons, e.g. to be able to
@@ -169,11 +159,11 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory) {
 		Assert.notNull(singletonFactory, "Singleton factory must not be null");
-		synchronized (this.singletonObjects) {  //ȫ�ֵ�������ͬ��
-			if (!this.singletonObjects.containsKey(beanName)) { //��������в�������bean
-				this.singletonFactories.put(beanName, singletonFactory);  //����bean��ObjectFactory����singletonFactories
-				this.earlySingletonObjects.remove(beanName);  //��earlySingletonObjects�Ƴ��ö���
-				this.registeredSingletons.add(beanName);  //
+		synchronized (this.singletonObjects) {
+			if (!this.singletonObjects.containsKey(beanName)) {
+				this.singletonFactories.put(beanName, singletonFactory);
+				this.earlySingletonObjects.remove(beanName);
+				this.registeredSingletons.add(beanName);
 			}
 		}
 	}
@@ -184,8 +174,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * ����һ���������ֲ����Ѿ�ע���singleton����
-	 * ����Ѿ�ʵ�����ĵ������󣬿��������ڴ��������������������(���ѭ����������)
 	 * Return the (raw) singleton object registered under the given name.
 	 * <p>Checks already instantiated singletons and also allows for an early
 	 * reference to a currently created singleton (resolving a circular reference).
@@ -194,18 +182,14 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * @return the registered singleton object, or {@code null} if none found
 	 */
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
-		//��黺�����Ƿ��Ѿ���beanʵ��
 		Object singletonObject = this.singletonObjects.get(beanName);
-		//���beanʵ���������ҵ�ǰbeanû�п�ʼ������
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
-			synchronized (this.singletonObjects) {  //����bean��ȫ�ֻ���
-				singletonObject = this.earlySingletonObjects.get(beanName); 
+			synchronized (this.singletonObjects) {
+				singletonObject = this.earlySingletonObjects.get(beanName);
 				if (singletonObject == null && allowEarlyReference) {
-					//ĳ��������Ҫ��ǰ��ʼ����ʱ��������addSingletonFactory��������Ӧ��ObjectFactory��ʼ�����Դ洢��singletonFactories
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 					if (singletonFactory != null) {
 						singletonObject = singletonFactory.getObject();
-						//��¼�ڻ����У�earlySingletonObjects��singletonFactories����
 						this.earlySingletonObjects.put(beanName, singletonObject);
 						this.singletonFactories.remove(beanName);
 					}
@@ -216,7 +200,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * ���ظ���bean Name�µĵ�������������󲻴��ڣ���ô��������һ��
 	 * Return the (raw) singleton object registered under the given name,
 	 * creating and registering a new one if none registered yet.
 	 * @param beanName the name of the bean
@@ -226,18 +209,18 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	public Object getSingleton(String beanName, ObjectFactory<?> singletonFactory) {
 		Assert.notNull(beanName, "'beanName' must not be null");
-		synchronized (this.singletonObjects) { //ͬ��
-			Object singletonObject = this.singletonObjects.get(beanName); //�ж϶���֮ǰ�Ƿ��Ѿ�����
+		synchronized (this.singletonObjects) {
+			Object singletonObject = this.singletonObjects.get(beanName);
 			if (singletonObject == null) {
 				if (this.singletonsCurrentlyInDestruction) {
 					throw new BeanCreationNotAllowedException(beanName,
-							"Singleton bean creation not allowed while the singletons of this factory are in destruction " +
+							"Singleton bean creation not allowed while singletons of this factory are in destruction " +
 							"(Do not request a bean from a BeanFactory in a destroy method implementation!)");
 				}
 				if (logger.isDebugEnabled()) {
 					logger.debug("Creating shared instance of singleton bean '" + beanName + "'");
 				}
-				beforeSingletonCreation(beanName);  //�����ｫbeanNameע�ᵽsingletonsCurrentlyInCreation����ʾ��bean���ڱ�ע��
+				beforeSingletonCreation(beanName);
 				boolean newSingleton = false;
 				boolean recordSuppressedExceptions = (this.suppressedExceptions == null);
 				if (recordSuppressedExceptions) {
@@ -267,7 +250,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					if (recordSuppressedExceptions) {
 						this.suppressedExceptions = null;
 					}
-					afterSingletonCreation(beanName);  //�����ｫbeanName��singletonsCurrentlyInCreation�Ƴ�
+					afterSingletonCreation(beanName);
 				}
 				if (newSingleton) {
 					addSingleton(beanName, singletonObject);
@@ -345,7 +328,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * �ж�ָ���ĵ���bean�Ƿ����ڱ�����
 	 * Return whether the specified singleton bean is currently in creation
 	 * (within the entire factory).
 	 * @param beanName the name of the bean
@@ -355,7 +337,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * �����ڴ�����bean��¼�ڻ����У�����Զ�ѭ���������м��
 	 * Callback before singleton creation.
 	 * <p>The default implementation register the singleton as currently in creation.
 	 * @param beanName the name of the singleton about to be created
@@ -424,7 +405,6 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * ���ڸ���beanע��������bean�������ڸ�bean������ǰ���Ƴ��������
 	 * Register a dependent bean for the given bean,
 	 * to be destroyed before the given bean is destroyed.
 	 * @param beanName the name of the bean
@@ -468,15 +448,13 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		return isDependent(beanName, dependentBeanName, null);
 	}
 
-	//���ܳ���A->B->A�����
 	private boolean isDependent(String beanName, String dependentBeanName, Set<String> alreadySeen) {
 		if (alreadySeen != null && alreadySeen.contains(beanName)) {
 			return false;
 		}
 		String canonicalName = canonicalName(beanName);
-		//dependentMap����ŵ�������������beanName��bean����
 		Set<String> dependentBeans = this.dependentBeanMap.get(canonicalName);
-		if (dependentBeans == null) {  //������û�б�ע��
+		if (dependentBeans == null) {
 			return false;
 		}
 		if (dependentBeans.contains(dependentBeanName)) {

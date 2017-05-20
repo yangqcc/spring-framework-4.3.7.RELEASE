@@ -57,7 +57,7 @@ import org.springframework.util.StringValueResolver;
  * @author Chris Beams
  * @since 3.1
  * @see org.springframework.core.env.ConfigurableEnvironment
- * @see org.springframework.beans.factory.config.PlaceholderConfigurerSupport
+ * @see PlaceholderConfigurerSupport
  * @see org.springframework.beans.factory.config.PropertyPlaceholderConfigurer
  */
 public class PropertySourcesPlaceholderConfigurer extends PlaceholderConfigurerSupport implements EnvironmentAware {
@@ -181,7 +181,7 @@ public class PropertySourcesPlaceholderConfigurer extends PlaceholderConfigurerS
 	}
 
 	/**
-	 * Implemented for compatibility with {@link org.springframework.beans.factory.config.PlaceholderConfigurerSupport}.
+	 * Implemented for compatibility with {@link PlaceholderConfigurerSupport}.
 	 * @deprecated in favor of {@link #processProperties(ConfigurableListableBeanFactory, ConfigurablePropertyResolver)}
 	 * @throws UnsupportedOperationException
 	 */

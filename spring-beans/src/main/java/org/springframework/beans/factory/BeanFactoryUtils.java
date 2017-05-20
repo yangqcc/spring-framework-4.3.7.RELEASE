@@ -51,7 +51,6 @@ public abstract class BeanFactoryUtils {
 
 
 	/**
-	 * 获取bean时，判断是不是获取工厂方法的实例(以&开头)
 	 * Return whether the given name is a factory dereference
 	 * (beginning with the factory dereference prefix).
 	 * @param name the name of the bean

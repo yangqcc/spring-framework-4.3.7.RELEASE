@@ -29,7 +29,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternUtils;
 
 /**
- * <p>Variant of {@link org.springframework.beans.factory.access.SingletonBeanFactoryLocator}
+ * <p>Variant of {@link SingletonBeanFactoryLocator}
  * which creates its internal bean factory reference as an
  * {@link org.springframework.context.ApplicationContext} instead of
  * SingletonBeanFactoryLocator's simple BeanFactory. For almost all usage scenarios,
@@ -46,8 +46,8 @@ import org.springframework.core.io.support.ResourcePatternUtils;
  *
  * @author Colin Sampaleanu
  * @author Juergen Hoeller
- * @see org.springframework.beans.factory.access.SingletonBeanFactoryLocator
- * @see org.springframework.context.access.DefaultLocatorFactory
+ * @see SingletonBeanFactoryLocator
+ * @see DefaultLocatorFactory
  */
 public class ContextSingletonBeanFactoryLocator extends SingletonBeanFactoryLocator {
 

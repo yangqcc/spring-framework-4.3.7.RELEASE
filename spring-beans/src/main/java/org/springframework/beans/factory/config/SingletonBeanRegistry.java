@@ -17,7 +17,6 @@
 package org.springframework.beans.factory.config;
 
 /**
- * 用于注册和共享bean实例的接口，向继承者统一暴露其对  singleton bean的处理方式
  * Interface that defines a registry for shared bean instances.
  * Can be implemented by {@link org.springframework.beans.factory.BeanFactory}
  * implementations in order to expose their singleton management facility

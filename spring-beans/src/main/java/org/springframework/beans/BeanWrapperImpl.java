@@ -94,7 +94,6 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	}
 
 	/**
-	 * object就是生成的beaninstance
 	 * Create a new BeanWrapperImpl for the given object.
 	 * @param object object wrapped by this BeanWrapper
 	 */
@@ -142,6 +141,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	 */
 	public void setBeanInstance(Object object) {
 		this.wrappedObject = object;
+		this.rootObject = object;
 		this.typeConverterDelegate = new TypeConverterDelegate(this, this.wrappedObject);
 		setIntrospectionClass(object.getClass());
 	}

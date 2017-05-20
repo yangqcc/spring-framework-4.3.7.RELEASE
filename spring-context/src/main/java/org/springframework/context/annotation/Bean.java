@@ -249,7 +249,7 @@ public @interface Bean {
 	 * <p>To disable destroy method inference for a particular {@code @Bean}, specify an
 	 * empty string as the value, e.g. {@code @Bean(destroyMethod="")}. Note that the
 	 * {@link org.springframework.beans.factory.DisposableBean} and the
-	 * {@link java.io.Closeable}/{@link java.lang.AutoCloseable} interfaces will
+	 * {@link java.io.Closeable}/{@link AutoCloseable} interfaces will
 	 * nevertheless get detected and the corresponding destroy/close method invoked.
 	 * <p>Note: Only invoked on beans whose lifecycle is under the full control of the
 	 * factory, which is always the case for singletons but not guaranteed for any

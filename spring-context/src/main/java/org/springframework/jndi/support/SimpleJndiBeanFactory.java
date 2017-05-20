@@ -35,7 +35,7 @@ import org.springframework.jndi.TypeMismatchNamingException;
 
 /**
  * Simple JNDI-based implementation of Spring's
- * {@link org.springframework.beans.factory.BeanFactory} interface.
+ * {@link BeanFactory} interface.
  * Does not support enumerating bean definitions, hence doesn't implement
  * the {@link org.springframework.beans.factory.ListableBeanFactory} interface.
  *

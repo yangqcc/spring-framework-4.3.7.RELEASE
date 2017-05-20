@@ -27,9 +27,9 @@ import java.util.Locale;
 /**
  * A BigDecimal formatter for number values in currency style.
  *
- * <p>Delegates to {@link java.text.NumberFormat#getCurrencyInstance(Locale)}.
+ * <p>Delegates to {@link NumberFormat#getCurrencyInstance(Locale)}.
  * Configures BigDecimal parsing so there is no loss of precision.
- * Can apply a specified {@link java.math.RoundingMode} to parsed values.
+ * Can apply a specified {@link RoundingMode} to parsed values.
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -58,7 +58,7 @@ public class CurrencyStyleFormatter extends AbstractNumberFormatter {
 
 	/**
 	 * Specify the rounding mode to use for decimal parsing.
-	 * Default is {@link java.math.RoundingMode#UNNECESSARY}.
+	 * Default is {@link RoundingMode#UNNECESSARY}.
 	 */
 	public void setRoundingMode(RoundingMode roundingMode) {
 		this.roundingMode = roundingMode;
@@ -74,7 +74,7 @@ public class CurrencyStyleFormatter extends AbstractNumberFormatter {
 	/**
 	 * Sets the pattern to use to format number values.
 	 * If not specified, the default DecimalFormat pattern is used.
-	 * @see java.text.DecimalFormat#applyPattern(String)
+	 * @see DecimalFormat#applyPattern(String)
 	 */
 	public void setPattern(String pattern) {
 		this.pattern = pattern;

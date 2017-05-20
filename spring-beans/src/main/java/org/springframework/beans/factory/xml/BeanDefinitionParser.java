@@ -21,12 +21,9 @@ import org.w3c.dom.Element;
 import org.springframework.beans.factory.config.BeanDefinition;
 
 /**
- * ��DefaultBeanDefinitionDocumentReader�ڲ�ʹ�ã����ڴ���ͻ��˵Ķ�����ǩ(��<beans>��ֱ����һ����ǩ)
- * 
  * Interface used by the {@link DefaultBeanDefinitionDocumentReader} to handle custom,
  * top-level (directly under {@code <beans/>}) tags.
- * 
- * 
+ *
  * <p>Implementations are free to turn the metadata in the custom tag into as many
  * {@link BeanDefinition BeanDefinitions} as required.
  *
@@ -41,8 +38,6 @@ import org.springframework.beans.factory.config.BeanDefinition;
 public interface BeanDefinitionParser {
 
 	/**
-	 * ���������Element���������(DeanDefinition)ͨ��BeanDefinitionRegistry����ע��
-	 * 
 	 * Parse the specified {@link Element} and register the resulting
 	 * {@link BeanDefinition BeanDefinition(s)} with the
 	 * {@link ParserContext#getRegistry() BeanDefinitionRegistry}

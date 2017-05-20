@@ -26,13 +26,13 @@ import org.springframework.util.Assert;
 
 /**
  * Helper class that allows for accessing a Spring
- * {@link org.springframework.context.MessageSource} as a {@link java.util.ResourceBundle}.
+ * {@link org.springframework.context.MessageSource} as a {@link ResourceBundle}.
  * Used for example to expose a Spring MessageSource to JSTL web views.
  *
  * @author Juergen Hoeller
  * @since 27.02.2003
  * @see org.springframework.context.MessageSource
- * @see java.util.ResourceBundle
+ * @see ResourceBundle
  * @see org.springframework.web.servlet.support.JstlUtils#exposeLocalizationContext
  */
 public class MessageSourceResourceBundle extends ResourceBundle {

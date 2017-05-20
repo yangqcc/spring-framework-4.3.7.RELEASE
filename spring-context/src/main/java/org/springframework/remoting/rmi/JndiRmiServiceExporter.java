@@ -31,7 +31,7 @@ import org.springframework.jndi.JndiTemplate;
  * Service exporter which binds RMI services to JNDI.
  * Typically used for RMI-IIOP (CORBA).
  *
- * <p>Exports services via the {@link javax.rmi.PortableRemoteObject} class.
+ * <p>Exports services via the {@link PortableRemoteObject} class.
  * You need to run "rmic" with the "-iiop" option to generate corresponding
  * stubs and skeletons for each exported service.
  *
@@ -63,7 +63,7 @@ import org.springframework.jndi.JndiTemplate;
  * @see #setJndiName
  * @see JndiRmiClientInterceptor
  * @see JndiRmiProxyFactoryBean
- * @see javax.rmi.PortableRemoteObject#exportObject
+ * @see PortableRemoteObject#exportObject
  */
 public class JndiRmiServiceExporter extends RmiBasedExporter implements InitializingBean, DisposableBean {
 

@@ -35,7 +35,8 @@ import java.util.Set;
  */
 public class MethodOverrides {
 
-	private final Set<MethodOverride> overrides = Collections.synchronizedSet(new LinkedHashSet<MethodOverride>(0));
+	private final Set<MethodOverride> overrides =
+			Collections.synchronizedSet(new LinkedHashSet<MethodOverride>(0));
 
 	private volatile boolean modified = false;
 

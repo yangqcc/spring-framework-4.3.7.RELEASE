@@ -21,7 +21,7 @@ import javax.naming.NamingException;
 import org.springframework.aop.TargetSource;
 
 /**
- * AOP {@link org.springframework.aop.TargetSource} that provides
+ * AOP {@link TargetSource} that provides
  * configurable JNDI lookups for {@code getTarget()} calls.
  *
  * <p>Can be used as alternative to {@link JndiObjectFactoryBean}, to allow for

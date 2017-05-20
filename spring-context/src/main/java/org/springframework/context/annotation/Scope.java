@@ -50,7 +50,7 @@ import org.springframework.core.annotation.AliasFor;
  * @author Sam Brannen
  * @since 2.5
  * @see org.springframework.stereotype.Component
- * @see org.springframework.context.annotation.Bean
+ * @see Bean
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

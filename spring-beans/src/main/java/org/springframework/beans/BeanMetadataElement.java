@@ -17,7 +17,6 @@
 package org.springframework.beans;
 
 /**
- * 持有元数据的<bean>元素的接口用于继承
  * Interface to be implemented by bean metadata elements
  * that carry a configuration source object.
  *
@@ -27,7 +26,6 @@ package org.springframework.beans;
 public interface BeanMetadataElement {
 
 	/**
-	 * 返回持有元数据元素配置的元数据资源对象
 	 * Return the configuration source {@code Object} for this metadata element
 	 * (may be {@code null}).
 	 */

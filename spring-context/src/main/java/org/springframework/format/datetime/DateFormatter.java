@@ -31,7 +31,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.util.StringUtils;
 
 /**
- * A formatter for {@link java.util.Date} types.
+ * A formatter for {@link Date} types.
  * Allows the configuration of an explicit date pattern and locale.
  *
  * @author Keith Donald

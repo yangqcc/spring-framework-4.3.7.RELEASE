@@ -32,14 +32,14 @@ import org.springframework.beans.factory.InitializingBean;
 /**
  * Base class for classes that are setting up a
  * {@code java.util.concurrent.ExecutorService}
- * (typically a {@link java.util.concurrent.ThreadPoolExecutor}).
+ * (typically a {@link ThreadPoolExecutor}).
  * Defines common configuration settings and common lifecycle handling.
  *
  * @author Juergen Hoeller
  * @since 3.0
- * @see java.util.concurrent.ExecutorService
+ * @see ExecutorService
  * @see java.util.concurrent.Executors
- * @see java.util.concurrent.ThreadPoolExecutor
+ * @see ThreadPoolExecutor
  */
 @SuppressWarnings("serial")
 public abstract class ExecutorConfigurationSupport extends CustomizableThreadFactory
@@ -89,7 +89,7 @@ public abstract class ExecutorConfigurationSupport extends CustomizableThreadFac
 	/**
 	 * Set the RejectedExecutionHandler to use for the ExecutorService.
 	 * Default is the ExecutorService's default abort policy.
-	 * @see java.util.concurrent.ThreadPoolExecutor.AbortPolicy
+	 * @see ThreadPoolExecutor.AbortPolicy
 	 */
 	public void setRejectedExecutionHandler(RejectedExecutionHandler rejectedExecutionHandler) {
 		this.rejectedExecutionHandler =
@@ -108,8 +108,8 @@ public abstract class ExecutorConfigurationSupport extends CustomizableThreadFac
 	 * down - e.g. in order to keep up other resources that your tasks may need -,
 	 * set the {@link #setAwaitTerminationSeconds "awaitTerminationSeconds"}
 	 * property instead of or in addition to this property.
-	 * @see java.util.concurrent.ExecutorService#shutdown()
-	 * @see java.util.concurrent.ExecutorService#shutdownNow()
+	 * @see ExecutorService#shutdown()
+	 * @see ExecutorService#shutdownNow()
 	 */
 	public void setWaitForTasksToCompleteOnShutdown(boolean waitForJobsToCompleteOnShutdown) {
 		this.waitForTasksToCompleteOnShutdown = waitForJobsToCompleteOnShutdown;
@@ -135,8 +135,8 @@ public abstract class ExecutorConfigurationSupport extends CustomizableThreadFac
 	 * since all remaining tasks in the queue will still get executed - in contrast
 	 * to the default shutdown behavior where it's just about waiting for currently
 	 * executing tasks that aren't reacting to thread interruption.
-	 * @see java.util.concurrent.ExecutorService#shutdown()
-	 * @see java.util.concurrent.ExecutorService#awaitTermination
+	 * @see ExecutorService#shutdown()
+	 * @see ExecutorService#awaitTermination
 	 */
 	public void setAwaitTerminationSeconds(int awaitTerminationSeconds) {
 		this.awaitTerminationSeconds = awaitTerminationSeconds;
@@ -171,7 +171,7 @@ public abstract class ExecutorConfigurationSupport extends CustomizableThreadFac
 	}
 
 	/**
-	 * Create the target {@link java.util.concurrent.ExecutorService} instance.
+	 * Create the target {@link ExecutorService} instance.
 	 * Called by {@code afterPropertiesSet}.
 	 * @param threadFactory the ThreadFactory to use
 	 * @param rejectedExecutionHandler the RejectedExecutionHandler to use
@@ -194,8 +194,8 @@ public abstract class ExecutorConfigurationSupport extends CustomizableThreadFac
 
 	/**
 	 * Perform a shutdown on the underlying ExecutorService.
-	 * @see java.util.concurrent.ExecutorService#shutdown()
-	 * @see java.util.concurrent.ExecutorService#shutdownNow()
+	 * @see ExecutorService#shutdown()
+	 * @see ExecutorService#shutdownNow()
 	 * @see #awaitTerminationIfNecessary()
 	 */
 	public void shutdown() {

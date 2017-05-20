@@ -33,9 +33,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
 /**
- * 扩展了org.springframework.beans.factory.parsing.ReaderContext，内部具体用了XmlBeanDefinitionReader
- * 并且把NamespaceHandlerResolver配置到XmlBeanDefinitionReader
- * 
  * Extension of {@link org.springframework.beans.factory.parsing.ReaderContext},
  * specific to use with an {@link XmlBeanDefinitionReader}. Provides access to the
  * {@link NamespaceHandlerResolver} configured in the {@link XmlBeanDefinitionReader}.
@@ -51,10 +48,10 @@ public class XmlReaderContext extends ReaderContext {
 	private final NamespaceHandlerResolver namespaceHandlerResolver;
 
 
-	public XmlReaderContext(Resource resource, ProblemReporter problemReporter,
+	public XmlReaderContext(
+			Resource resource, ProblemReporter problemReporter,
 			ReaderEventListener eventListener, SourceExtractor sourceExtractor,
-			XmlBeanDefinitionReader reader,
-			NamespaceHandlerResolver namespaceHandlerResolver) {
+			XmlBeanDefinitionReader reader, NamespaceHandlerResolver namespaceHandlerResolver) {
 
 		super(resource, problemReporter, eventListener, sourceExtractor);
 		this.reader = reader;

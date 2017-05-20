@@ -27,6 +27,7 @@ import java.nio.file.Paths;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.lang.UsesJava7;
 import org.springframework.util.Assert;
 
 /**
@@ -50,6 +51,7 @@ import org.springframework.util.Assert;
  * @see FileEditor
  * @see URLEditor
  */
+@UsesJava7
 public class PathEditor extends PropertyEditorSupport {
 
 	private final ResourceEditor resourceEditor;

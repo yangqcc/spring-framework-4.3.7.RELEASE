@@ -59,6 +59,6 @@ public interface ImportBeanDefinitionRegistrar {
 	 * @param registry current bean definition registry
 	 */
 	public void registerBeanDefinitions(
-			AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry);
+            AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry);
 
 }

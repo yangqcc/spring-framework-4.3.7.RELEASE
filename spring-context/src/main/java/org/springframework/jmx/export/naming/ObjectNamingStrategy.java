@@ -28,7 +28,7 @@ import javax.management.ObjectName;
  * @author Rob Harrop
  * @since 1.2
  * @see org.springframework.jmx.export.MBeanExporter
- * @see javax.management.ObjectName
+ * @see ObjectName
  */
 public interface ObjectNamingStrategy {
 

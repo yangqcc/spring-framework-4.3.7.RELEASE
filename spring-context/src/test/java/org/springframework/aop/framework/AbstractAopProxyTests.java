@@ -2015,7 +2015,7 @@ public abstract class AbstractAopProxyTests {
 		}
 
 		/**
-		 * @see org.springframework.aop.TargetSource#getTargetClass()
+		 * @see TargetSource#getTargetClass()
 		 */
 		@Override
 		public Class<?> getTargetClass() {
@@ -2023,7 +2023,7 @@ public abstract class AbstractAopProxyTests {
 		}
 
 		/**
-		 * @see org.springframework.aop.TargetSource#getTarget()
+		 * @see TargetSource#getTarget()
 		 */
 		@Override
 		public Object getTarget() throws Exception {
@@ -2032,7 +2032,7 @@ public abstract class AbstractAopProxyTests {
 		}
 
 		/**
-		 * @see org.springframework.aop.TargetSource#releaseTarget(java.lang.Object)
+		 * @see TargetSource#releaseTarget(Object)
 		 */
 		@Override
 		public void releaseTarget(Object pTarget) throws Exception {
@@ -2051,7 +2051,7 @@ public abstract class AbstractAopProxyTests {
 		}
 
 		/**
-		 * @see org.springframework.aop.TargetSource#isStatic()
+		 * @see TargetSource#isStatic()
 		 */
 		@Override
 		public boolean isStatic() {

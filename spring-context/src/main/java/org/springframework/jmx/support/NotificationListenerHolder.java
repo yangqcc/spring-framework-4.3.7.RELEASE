@@ -27,8 +27,8 @@ import javax.management.ObjectName;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Helper class that aggregates a {@link javax.management.NotificationListener},
- * a {@link javax.management.NotificationFilter}, and an arbitrary handback
+ * Helper class that aggregates a {@link NotificationListener},
+ * a {@link NotificationFilter}, and an arbitrary handback
  * object, as well as the names of MBeans from which the listener wishes
  * to receive {@link javax.management.Notification Notifications}.
  *
@@ -49,21 +49,21 @@ public class NotificationListenerHolder {
 
 
 	/**
-	 * Set the {@link javax.management.NotificationListener}.
+	 * Set the {@link NotificationListener}.
 	 */
 	public void setNotificationListener(NotificationListener notificationListener) {
 		this.notificationListener = notificationListener;
 	}
 
 	/**
-	 * Get the {@link javax.management.NotificationListener}.
+	 * Get the {@link NotificationListener}.
 	 */
 	public NotificationListener getNotificationListener() {
 		return this.notificationListener;
 	}
 
 	/**
-	 * Set the {@link javax.management.NotificationFilter} associated
+	 * Set the {@link NotificationFilter} associated
 	 * with the encapsulated {@link #getNotificationFilter() NotificationFilter}.
 	 * <p>May be {@code null}.
 	 */
@@ -72,7 +72,7 @@ public class NotificationListenerHolder {
 	}
 
 	/**
-	 * Return the {@link javax.management.NotificationFilter} associated
+	 * Return the {@link NotificationFilter} associated
 	 * with the encapsulated {@link #getNotificationFilter() NotificationFilter}.
 	 * <p>May be {@code null}.
 	 */
@@ -83,9 +83,9 @@ public class NotificationListenerHolder {
 	/**
 	 * Set the (arbitrary) object that will be 'handed back' as-is by an
 	 * {@link javax.management.NotificationBroadcaster} when notifying
-	 * any {@link javax.management.NotificationListener}.
+	 * any {@link NotificationListener}.
 	 * @param handback the handback object (can be {@code null})
-	 * @see javax.management.NotificationListener#handleNotification(javax.management.Notification, Object)
+	 * @see NotificationListener#handleNotification(javax.management.Notification, Object)
 	 */
 	public void setHandback(Object handback) {
 		this.handback = handback;
@@ -94,16 +94,16 @@ public class NotificationListenerHolder {
 	/**
 	 * Return the (arbitrary) object that will be 'handed back' as-is by an
 	 * {@link javax.management.NotificationBroadcaster} when notifying
-	 * any {@link javax.management.NotificationListener}.
+	 * any {@link NotificationListener}.
 	 * @return the handback object (may be {@code null})
-	 * @see javax.management.NotificationListener#handleNotification(javax.management.Notification, Object)
+	 * @see NotificationListener#handleNotification(javax.management.Notification, Object)
 	 */
 	public Object getHandback() {
 		return this.handback;
 	}
 
 	/**
-	 * Set the {@link javax.management.ObjectName}-style name of the single MBean
+	 * Set the {@link ObjectName}-style name of the single MBean
 	 * that the encapsulated {@link #getNotificationFilter() NotificationFilter}
 	 * will be registered with to listen for {@link javax.management.Notification Notifications}.
 	 * Can be specified as {@code ObjectName} instance or as {@code String}.
@@ -114,7 +114,7 @@ public class NotificationListenerHolder {
 	}
 
 	/**
-	 * Set an array of {@link javax.management.ObjectName}-style names of the MBeans
+	 * Set an array of {@link ObjectName}-style names of the MBeans
 	 * that the encapsulated {@link #getNotificationFilter() NotificationFilter}
 	 * will be registered with to listen for {@link javax.management.Notification Notifications}.
 	 * Can be specified as {@code ObjectName} instances or as {@code String}s.
@@ -126,7 +126,7 @@ public class NotificationListenerHolder {
 	}
 
 	/**
-	 * Return the list of {@link javax.management.ObjectName} String representations for
+	 * Return the list of {@link ObjectName} String representations for
 	 * which the encapsulated {@link #getNotificationFilter() NotificationFilter} will
 	 * be registered as a listener for {@link javax.management.Notification Notifications}.
 	 * @throws MalformedObjectNameException if an {@code ObjectName} is malformed

@@ -29,7 +29,7 @@ import org.springframework.jndi.JndiTemplate;
  * JSR-236's "java:comp/DefaultManagedExecutorService" in a Java EE 7 environment.
  *
  * <p>Note: This class is not strictly JSR-236 based; it can work with any regular
- * {@link java.util.concurrent.Executor} that can be found in JNDI.
+ * {@link Executor} that can be found in JNDI.
  * The actual adapting to {@link javax.enterprise.concurrent.ManagedExecutorService}
  * happens in the base class {@link ConcurrentTaskExecutor} itself.
  *
@@ -70,7 +70,7 @@ public class DefaultManagedTaskExecutor extends ConcurrentTaskExecutor implement
 	}
 
 	/**
-	 * Specify a JNDI name of the {@link java.util.concurrent.Executor} to delegate to,
+	 * Specify a JNDI name of the {@link Executor} to delegate to,
 	 * replacing the default JNDI name "java:comp/DefaultManagedExecutorService".
 	 * <p>This can either be a fully qualified JNDI name, or the JNDI name relative
 	 * to the current environment naming context if "resourceRef" is set to "true".

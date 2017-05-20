@@ -68,7 +68,7 @@ import org.springframework.context.access.ContextSingletonBeanFactoryLocator;
  * @author Juergen Hoeller
  * @since 2.5.1
  * @see org.springframework.beans.factory.annotation.Autowired
- * @see org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+ * @see AutowiredAnnotationBeanPostProcessor
  * @see org.springframework.context.access.ContextSingletonBeanFactoryLocator
  * @see #getBeanFactoryLocatorKey
  */
@@ -153,7 +153,7 @@ public class SpringBeanAutowiringInterceptor {
 	 * @return the BeanFactoryReference to use (never {@code null})
 	 * @see #getBeanFactoryLocator
 	 * @see #getBeanFactoryLocatorKey
-	 * @see org.springframework.beans.factory.access.BeanFactoryLocator#useBeanFactory(String)
+	 * @see BeanFactoryLocator#useBeanFactory(String)
 	 */
 	protected BeanFactoryReference getBeanFactoryReference(Object target) {
 		String key = getBeanFactoryLocatorKey(target);

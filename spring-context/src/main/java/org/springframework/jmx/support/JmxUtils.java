@@ -70,7 +70,7 @@ public abstract class JmxUtils {
 	 * @return the {@code MBeanServer} if found
 	 * @throws org.springframework.jmx.MBeanServerNotFoundException
 	 * if no {@code MBeanServer} could be found
-	 * @see javax.management.MBeanServerFactory#findMBeanServer
+	 * @see MBeanServerFactory#findMBeanServer
 	 */
 	public static MBeanServer locateMBeanServer() throws MBeanServerNotFoundException {
 		return locateMBeanServer(null);
@@ -86,7 +86,7 @@ public abstract class JmxUtils {
 	 * @return the {@code MBeanServer} if found
 	 * @throws org.springframework.jmx.MBeanServerNotFoundException
 	 * if no {@code MBeanServer} could be found
-	 * @see javax.management.MBeanServerFactory#findMBeanServer(String)
+	 * @see MBeanServerFactory#findMBeanServer(String)
 	 */
 	public static MBeanServer locateMBeanServer(String agentId) throws MBeanServerNotFoundException {
 		MBeanServer server = null;
@@ -207,7 +207,7 @@ public abstract class JmxUtils {
 	 * @param managedResource the MBean instance
 	 * @return an ObjectName with the MBean identity added
 	 * @throws MalformedObjectNameException in case of an invalid object name specification
-	 * @see org.springframework.util.ObjectUtils#getIdentityHexString(Object)
+	 * @see ObjectUtils#getIdentityHexString(Object)
 	 */
 	public static ObjectName appendIdentityToObjectName(ObjectName objectName, Object managedResource)
 			throws MalformedObjectNameException {
@@ -225,7 +225,7 @@ public abstract class JmxUtils {
 	 * the class of the given bean else (for a JDK proxy or a plain bean class).
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @return the bean class to expose
-	 * @see org.springframework.util.ClassUtils#getUserClass(Object)
+	 * @see ClassUtils#getUserClass(Object)
 	 */
 	public static Class<?> getClassToExpose(Object managedBean) {
 		return ClassUtils.getUserClass(managedBean);
@@ -239,7 +239,7 @@ public abstract class JmxUtils {
 	 * the class of the given bean else (for a JDK proxy or a plain bean class).
 	 * @param clazz the bean class (might be an AOP proxy class)
 	 * @return the bean class to expose
-	 * @see org.springframework.util.ClassUtils#getUserClass(Class)
+	 * @see ClassUtils#getUserClass(Class)
 	 */
 	public static Class<?> getClassToExpose(Class<?> clazz) {
 		return ClassUtils.getUserClass(clazz);
@@ -247,7 +247,7 @@ public abstract class JmxUtils {
 
 	/**
 	 * Determine whether the given bean class qualifies as an MBean as-is.
-	 * <p>This implementation checks for {@link javax.management.DynamicMBean}
+	 * <p>This implementation checks for {@link DynamicMBean}
 	 * classes as well as classes with corresponding "*MBean" interface
 	 * (Standard MBeans) or corresponding "*MXBean" interface (Java 6 MXBeans).
 	 * @param clazz the bean class to analyze

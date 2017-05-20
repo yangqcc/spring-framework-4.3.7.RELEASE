@@ -22,7 +22,7 @@ import org.springframework.ui.ExtendedModelMap;
 import org.springframework.validation.BindingResult;
 
 /**
- * Subclass of {@link org.springframework.ui.ExtendedModelMap} that automatically removes
+ * Subclass of {@link ExtendedModelMap} that automatically removes
  * a {@link org.springframework.validation.BindingResult} object if the corresponding
  * target attribute gets replaced through regular {@link Map} operations.
  *

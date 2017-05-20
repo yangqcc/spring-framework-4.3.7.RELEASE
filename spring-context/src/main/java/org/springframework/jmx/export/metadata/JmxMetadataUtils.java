@@ -31,7 +31,7 @@ public abstract class JmxMetadataUtils {
 
 	/**
 	 * Convert the supplied {@link ManagedNotification} into the corresponding
-	 * {@link javax.management.modelmbean.ModelMBeanNotificationInfo}.
+	 * {@link ModelMBeanNotificationInfo}.
 	 */
 	public static ModelMBeanNotificationInfo convertToModelMBeanNotificationInfo(ManagedNotification notificationInfo) {
 		String name = notificationInfo.getName();

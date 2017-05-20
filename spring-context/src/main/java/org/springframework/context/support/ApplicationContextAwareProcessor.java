@@ -34,7 +34,7 @@ import org.springframework.context.ResourceLoaderAware;
 import org.springframework.util.StringValueResolver;
 
 /**
- * {@link org.springframework.beans.factory.config.BeanPostProcessor}
+ * {@link BeanPostProcessor}
  * implementation that passes the ApplicationContext to beans that
  * implement the {@link EnvironmentAware}, {@link EmbeddedValueResolverAware},
  * {@link ResourceLoaderAware}, {@link ApplicationEventPublisherAware},
@@ -55,7 +55,7 @@ import org.springframework.util.StringValueResolver;
  * @see org.springframework.context.ApplicationEventPublisherAware
  * @see org.springframework.context.MessageSourceAware
  * @see org.springframework.context.ApplicationContextAware
- * @see org.springframework.context.support.AbstractApplicationContext#refresh()
+ * @see AbstractApplicationContext#refresh()
  */
 class ApplicationContextAwareProcessor implements BeanPostProcessor {
 

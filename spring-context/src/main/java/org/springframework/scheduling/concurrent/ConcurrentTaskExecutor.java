@@ -40,7 +40,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  * the {@link org.springframework.core.task.AsyncTaskExecutor} interface accordingly.
  *
  * <p>Autodetects a JSR-236 {@link javax.enterprise.concurrent.ManagedExecutorService}
- * in order to expose {@link javax.enterprise.concurrent.ManagedTask} adapters for it,
+ * in order to expose {@link ManagedTask} adapters for it,
  * exposing a long-running hint based on {@link SchedulingAwareRunnable} and an identity
  * name based on the given Runnable/Callable's {@code toString()}. For JSR-236 style
  * lookup in a Java EE 7 environment, consider using {@link DefaultManagedTaskExecutor}.
@@ -53,10 +53,10 @@ import org.springframework.util.concurrent.ListenableFuture;
  *
  * @author Juergen Hoeller
  * @since 2.0
- * @see java.util.concurrent.Executor
+ * @see Executor
  * @see java.util.concurrent.ExecutorService
  * @see java.util.concurrent.ThreadPoolExecutor
- * @see java.util.concurrent.Executors
+ * @see Executors
  * @see DefaultManagedTaskExecutor
  * @see ThreadPoolTaskExecutor
  */
@@ -83,17 +83,17 @@ public class ConcurrentTaskExecutor implements AsyncListenableTaskExecutor, Sche
 
 	/**
 	 * Create a new ConcurrentTaskExecutor, using a single thread executor as default.
-	 * @see java.util.concurrent.Executors#newSingleThreadExecutor()
+	 * @see Executors#newSingleThreadExecutor()
 	 */
 	public ConcurrentTaskExecutor() {
 		setConcurrentExecutor(null);
 	}
 
 	/**
-	 * Create a new ConcurrentTaskExecutor, using the given {@link java.util.concurrent.Executor}.
+	 * Create a new ConcurrentTaskExecutor, using the given {@link Executor}.
 	 * <p>Autodetects a JSR-236 {@link javax.enterprise.concurrent.ManagedExecutorService}
-	 * in order to expose {@link javax.enterprise.concurrent.ManagedTask} adapters for it.
-	 * @param concurrentExecutor the {@link java.util.concurrent.Executor} to delegate to
+	 * in order to expose {@link ManagedTask} adapters for it.
+	 * @param concurrentExecutor the {@link Executor} to delegate to
 	 */
 	public ConcurrentTaskExecutor(Executor concurrentExecutor) {
 		setConcurrentExecutor(concurrentExecutor);
@@ -101,9 +101,9 @@ public class ConcurrentTaskExecutor implements AsyncListenableTaskExecutor, Sche
 
 
 	/**
-	 * Specify the {@link java.util.concurrent.Executor} to delegate to.
+	 * Specify the {@link Executor} to delegate to.
 	 * <p>Autodetects a JSR-236 {@link javax.enterprise.concurrent.ManagedExecutorService}
-	 * in order to expose {@link javax.enterprise.concurrent.ManagedTask} adapters for it.
+	 * in order to expose {@link ManagedTask} adapters for it.
 	 */
 	public final void setConcurrentExecutor(Executor concurrentExecutor) {
 		if (concurrentExecutor != null) {
@@ -122,7 +122,7 @@ public class ConcurrentTaskExecutor implements AsyncListenableTaskExecutor, Sche
 	}
 
 	/**
-	 * Return the {@link java.util.concurrent.Executor} that this adapter delegates to.
+	 * Return the {@link Executor} that this adapter delegates to.
 	 */
 	public final Executor getConcurrentExecutor() {
 		return this.concurrentExecutor;

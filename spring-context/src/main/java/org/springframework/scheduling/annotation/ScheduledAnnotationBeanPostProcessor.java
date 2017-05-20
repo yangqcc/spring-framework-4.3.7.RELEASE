@@ -88,7 +88,7 @@ import org.springframework.util.StringValueResolver;
  * @see EnableScheduling
  * @see SchedulingConfigurer
  * @see org.springframework.scheduling.TaskScheduler
- * @see org.springframework.scheduling.config.ScheduledTaskRegistrar
+ * @see ScheduledTaskRegistrar
  * @see AsyncAnnotationBeanPostProcessor
  */
 public class ScheduledAnnotationBeanPostProcessor
@@ -133,7 +133,7 @@ public class ScheduledAnnotationBeanPostProcessor
 
 	/**
 	 * Set the {@link org.springframework.scheduling.TaskScheduler} that will invoke
-	 * the scheduled methods, or a {@link java.util.concurrent.ScheduledExecutorService}
+	 * the scheduled methods, or a {@link ScheduledExecutorService}
 	 * to be wrapped as a TaskScheduler.
 	 * <p>If not specified, default scheduler resolution will apply: searching for a
 	 * unique {@link TaskScheduler} bean in the context, or for a {@link TaskScheduler}

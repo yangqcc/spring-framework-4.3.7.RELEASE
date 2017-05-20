@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2016 the original author or authors.
+ * Copyright 2002-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.InjectionPoint;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
-import org.springframework.core.GenericCollectionTypeResolver;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.ParameterNameDiscoverer;
@@ -62,6 +61,8 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	private int nestingLevel = 1;
 
 	private Class<?> containingClass;
+
+	private volatile ResolvableType resolvableType;
 
 
 	/**
@@ -173,21 +174,6 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Resolve the specified bean name, as a candidate result of the matching
-	 * algorithm for this dependency, to a bean instance from the given factory.
-	 * <p>The default implementation calls {@link BeanFactory#getBean(String)}.
-	 * Subclasses may provide additional arguments or other customizations.
-	 * @param beanName the bean name, as a candidate result for this dependency
-	 * @param beanFactory the associated factory
-	 * @return the bean instance (never {@code null})
-	 * @since 4.3
-	 * @see BeanFactory#getBean(String)
-	 */
-	public Object resolveCandidate(String beanName, BeanFactory beanFactory) {
-		return beanFactory.getBean(beanName);
-	}
-
-	/**
 	 * Resolve a shortcut for this dependency against the given factory, for example
 	 * taking some pre-resolved information into account.
 	 * <p>The resolution algorithm will first attempt to resolve a shortcut through this
@@ -196,10 +182,30 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	 * pre-cached information while still receiving {@link InjectionPoint} exposure etc.
 	 * @param beanFactory the associated factory
 	 * @return the shortcut result if any, or {@code null} if none
+	 * @throws BeansException if the shortcut could not be obtained
 	 * @since 4.3.1
 	 */
-	public Object resolveShortcut(BeanFactory beanFactory) {
+	public Object resolveShortcut(BeanFactory beanFactory) throws BeansException {
 		return null;
+	}
+
+	/**
+	 * Resolve the specified bean name, as a candidate result of the matching
+	 * algorithm for this dependency, to a bean instance from the given factory.
+	 * <p>The default implementation calls {@link BeanFactory#getBean(String)}.
+	 * Subclasses may provide additional arguments or other customizations.
+	 * @param beanName the bean name, as a candidate result for this dependency
+	 * @param requiredType the expected type of the bean (as an assertion)
+	 * @param beanFactory the associated factory
+	 * @return the bean instance (never {@code null})
+	 * @throws BeansException if the bean could not be obtained
+	 * @since 4.3.2
+	 * @see BeanFactory#getBean(String)
+	 */
+	public Object resolveCandidate(String beanName, Class<?> requiredType, BeanFactory beanFactory)
+			throws BeansException {
+
+		return beanFactory.getBean(beanName, requiredType);
 	}
 
 
@@ -209,6 +215,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	 */
 	public void increaseNestingLevel() {
 		this.nestingLevel++;
+		this.resolvableType = null;
 		if (this.methodParameter != null) {
 			this.methodParameter.increaseNestingLevel();
 		}
@@ -222,6 +229,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	 */
 	public void setContainingClass(Class<?> containingClass) {
 		this.containingClass = containingClass;
+		this.resolvableType = null;
 		if (this.methodParameter != null) {
 			GenericTypeResolver.resolveParameterType(this.methodParameter, containingClass);
 		}
@@ -232,8 +240,12 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	 * @since 4.0
 	 */
 	public ResolvableType getResolvableType() {
-		return (this.field != null ? ResolvableType.forField(this.field, this.nestingLevel, this.containingClass) :
-				ResolvableType.forMethodParameter(this.methodParameter));
+		if (this.resolvableType == null) {
+			this.resolvableType = (this.field != null ?
+					ResolvableType.forField(this.field, this.nestingLevel, this.containingClass) :
+					ResolvableType.forMethodParameter(this.methodParameter));
+		}
+		return this.resolvableType;
 	}
 
 	/**
@@ -319,31 +331,37 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	/**
 	 * Determine the generic element type of the wrapped Collection parameter/field, if any.
 	 * @return the generic type, or {@code null} if none
+	 * @deprecated as of 4.3.6, in favor of direct {@link ResolvableType} usage
 	 */
+	@Deprecated
 	public Class<?> getCollectionType() {
 		return (this.field != null ?
-				GenericCollectionTypeResolver.getCollectionFieldType(this.field, this.nestingLevel) :
-				GenericCollectionTypeResolver.getCollectionParameterType(this.methodParameter));
+				org.springframework.core.GenericCollectionTypeResolver.getCollectionFieldType(this.field, this.nestingLevel) :
+				org.springframework.core.GenericCollectionTypeResolver.getCollectionParameterType(this.methodParameter));
 	}
 
 	/**
 	 * Determine the generic key type of the wrapped Map parameter/field, if any.
 	 * @return the generic type, or {@code null} if none
+	 * @deprecated as of 4.3.6, in favor of direct {@link ResolvableType} usage
 	 */
+	@Deprecated
 	public Class<?> getMapKeyType() {
 		return (this.field != null ?
-				GenericCollectionTypeResolver.getMapKeyFieldType(this.field, this.nestingLevel) :
-				GenericCollectionTypeResolver.getMapKeyParameterType(this.methodParameter));
+				org.springframework.core.GenericCollectionTypeResolver.getMapKeyFieldType(this.field, this.nestingLevel) :
+				org.springframework.core.GenericCollectionTypeResolver.getMapKeyParameterType(this.methodParameter));
 	}
 
 	/**
 	 * Determine the generic value type of the wrapped Map parameter/field, if any.
 	 * @return the generic type, or {@code null} if none
+	 * @deprecated as of 4.3.6, in favor of direct {@link ResolvableType} usage
 	 */
+	@Deprecated
 	public Class<?> getMapValueType() {
 		return (this.field != null ?
-				GenericCollectionTypeResolver.getMapValueFieldType(this.field, this.nestingLevel) :
-				GenericCollectionTypeResolver.getMapValueParameterType(this.methodParameter));
+				org.springframework.core.GenericCollectionTypeResolver.getMapValueFieldType(this.field, this.nestingLevel) :
+				org.springframework.core.GenericCollectionTypeResolver.getMapValueParameterType(this.methodParameter));
 	}
 
 

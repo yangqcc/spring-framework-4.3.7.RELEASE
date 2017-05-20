@@ -53,7 +53,7 @@ import org.springframework.util.ReflectionUtils;
  * @author Rob Harrop
  * @author Rod Johnson
  * @since 2.0
- * @see groovy.lang.GroovyClassLoader
+ * @see GroovyClassLoader
  * @see org.springframework.scripting.support.ScriptFactoryPostProcessor
  */
 public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, BeanClassLoaderAware {
@@ -204,7 +204,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 
 	/**
 	 * Loads and parses the Groovy script via the GroovyClassLoader.
-	 * @see groovy.lang.GroovyClassLoader
+	 * @see GroovyClassLoader
 	 */
 	@Override
 	public Object getScriptedObject(ScriptSource scriptSource, Class<?>... actualInterfaces)

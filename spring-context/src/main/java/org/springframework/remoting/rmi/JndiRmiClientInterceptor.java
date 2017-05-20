@@ -41,7 +41,7 @@ import org.springframework.remoting.support.RemoteInvocationFactory;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link org.aopalliance.intercept.MethodInterceptor} for accessing RMI services from JNDI.
+ * {@link MethodInterceptor} for accessing RMI services from JNDI.
  * Typically used for RMI-IIOP (CORBA), but can also be used for EJB home objects
  * (for example, a Stateful Session Bean home). In contrast to a plain JNDI lookup,
  * this accessor also performs narrowing through PortableRemoteObject.
@@ -72,9 +72,9 @@ import org.springframework.util.ReflectionUtils;
  * @see JndiRmiServiceExporter
  * @see JndiRmiProxyFactoryBean
  * @see org.springframework.remoting.RemoteAccessException
- * @see java.rmi.RemoteException
+ * @see RemoteException
  * @see java.rmi.Remote
- * @see javax.rmi.PortableRemoteObject#narrow
+ * @see PortableRemoteObject#narrow
  */
 public class JndiRmiClientInterceptor extends JndiObjectLocator implements MethodInterceptor, InitializingBean {
 
@@ -333,7 +333,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	/**
 	 * Determine whether the given CORBA exception indicates a connect failure.
 	 * <p>The default implementation checks for CORBA's
-	 * {@link org.omg.CORBA.OBJECT_NOT_EXIST} exception.
+	 * {@link OBJECT_NOT_EXIST} exception.
 	 * @param ex the RMI exception to check
 	 * @return whether the exception should be treated as connect failure
 	 */

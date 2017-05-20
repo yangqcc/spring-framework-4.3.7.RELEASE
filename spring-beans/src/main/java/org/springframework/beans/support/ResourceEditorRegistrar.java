@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2015 the original author or authors.
+ * Copyright 2002-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,9 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.net.URI;
 import java.net.URL;
+
 import org.xml.sax.InputSource;
+
 import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.PropertyEditorRegistry;
 import org.springframework.beans.PropertyEditorRegistrySupport;
@@ -31,6 +33,7 @@ import org.springframework.beans.propertyeditors.ClassEditor;
 import org.springframework.beans.propertyeditors.FileEditor;
 import org.springframework.beans.propertyeditors.InputSourceEditor;
 import org.springframework.beans.propertyeditors.InputStreamEditor;
+import org.springframework.beans.propertyeditors.PathEditor;
 import org.springframework.beans.propertyeditors.ReaderEditor;
 import org.springframework.beans.propertyeditors.URIEditor;
 import org.springframework.beans.propertyeditors.URLEditor;
@@ -41,6 +44,7 @@ import org.springframework.core.io.ResourceEditor;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.ResourceArrayPropertyEditor;
 import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.util.ClassUtils;
 
 /**
  * PropertyEditorRegistrar implementation that populates a given
@@ -55,6 +59,19 @@ import org.springframework.core.io.support.ResourcePatternResolver;
  * @since 2.0
  */
 public class ResourceEditorRegistrar implements PropertyEditorRegistrar {
+
+	private static Class<?> pathClass;
+
+	static {
+		try {
+			pathClass = ClassUtils.forName("java.nio.file.Path", ResourceEditorRegistrar.class.getClassLoader());
+		}
+		catch (ClassNotFoundException ex) {
+			// Java 7 Path class not available
+			pathClass = null;
+		}
+	}
+
 
 	private final PropertyResolver propertyResolver;
 
@@ -101,6 +118,9 @@ public class ResourceEditorRegistrar implements PropertyEditorRegistrar {
 		doRegisterEditor(registry, InputStream.class, new InputStreamEditor(baseEditor));
 		doRegisterEditor(registry, InputSource.class, new InputSourceEditor(baseEditor));
 		doRegisterEditor(registry, File.class, new FileEditor(baseEditor));
+		if (pathClass != null) {
+			doRegisterEditor(registry, pathClass, new PathEditor(baseEditor));
+		}
 		doRegisterEditor(registry, Reader.class, new ReaderEditor(baseEditor));
 		doRegisterEditor(registry, URL.class, new URLEditor(baseEditor));
 
