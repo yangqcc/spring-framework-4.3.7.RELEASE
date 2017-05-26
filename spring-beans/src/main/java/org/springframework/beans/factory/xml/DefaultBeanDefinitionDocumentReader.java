@@ -141,7 +141,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
         //解析前处理,留给子类实现
         preProcessXml(root);
         parseBeanDefinitions(root, this.delegate);
-        //解析够处理,留给子类实现
+
         postProcessXml(root);
 
         this.delegate = parent;
@@ -156,6 +156,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
     }
 
     /**
+     * 解析document中root级的标签,就像"import","alias","bean"
      * Parse the elements at the root level in the document:
      * "import", "alias", "bean".
      *
@@ -169,6 +170,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
                 if (node instanceof Element) {
                     Element ele = (Element) node;
                     if (delegate.isDefaultNamespace(ele)) {
+                        //解析默认标签
                         parseDefaultElement(ele, delegate);
                     } else {
                         delegate.parseCustomElement(ele);

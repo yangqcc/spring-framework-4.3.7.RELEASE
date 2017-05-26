@@ -16,35 +16,40 @@
 
 package org.springframework.core.type.classreading;
 
-import java.io.IOException;
-
 import org.springframework.core.io.Resource;
 
+import java.io.IOException;
+
 /**
+ * {@link MetadataReader}实例的工厂接口,允许缓存每个原始资源的MetadataReader
  * Factory interface for {@link MetadataReader} instances.
  * Allows for caching a MetadataReader per original resource.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see SimpleMetadataReaderFactory
  * @see CachingMetadataReaderFactory
+ * @since 2.5
  */
 public interface MetadataReaderFactory {
 
-	/**
-	 * Obtain a MetadataReader for the given class name.
-	 * @param className the class name (to be resolved to a ".class" file)
-	 * @return a holder for the ClassReader instance (never {@code null})
-	 * @throws IOException in case of I/O failure
-	 */
-	MetadataReader getMetadataReader(String className) throws IOException;
+    /**
+     * 返回给定 class名称的MetadataReader
+     * Obtain a MetadataReader for the given class name.
+     *
+     * @param className the class name (to be resolved to a ".class" file)
+     * @return a holder for the ClassReader instance (never {@code null})
+     * @throws IOException in case of I/O failure
+     */
+    MetadataReader getMetadataReader(String className) throws IOException;
 
-	/**
-	 * Obtain a MetadataReader for the given resource.
-	 * @param resource the resource (pointing to a ".class" file)
-	 * @return a holder for the ClassReader instance (never {@code null})
-	 * @throws IOException in case of I/O failure
-	 */
-	MetadataReader getMetadataReader(Resource resource) throws IOException;
+    /**
+     * 返回给定资源的MetadataReader
+     * Obtain a MetadataReader for the given resource.
+     *
+     * @param resource the resource (pointing to a ".class" file)
+     * @return a holder for the ClassReader instance (never {@code null})
+     * @throws IOException in case of I/O failure
+     */
+    MetadataReader getMetadataReader(Resource resource) throws IOException;
 
 }
