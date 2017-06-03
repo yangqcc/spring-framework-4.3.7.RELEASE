@@ -26,6 +26,7 @@ import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
+ * 使用标准反射实现给定的Class
  * {@link AnnotationMetadata} implementation that uses standard reflection
  * to introspect a given {@link Class}.
  *
@@ -53,6 +54,7 @@ public class StandardAnnotationMetadata extends StandardClassMetadata implements
 	}
 
 	/**
+	 * 给指定的Class创建一个新的{@link StandardAnnotationMetadata}包装对象
 	 * Create a new {@link StandardAnnotationMetadata} wrapper for the given Class,
 	 * providing the option to return any nested annotations or annotation arrays in the
 	 * form of {@link org.springframework.core.annotation.AnnotationAttributes} instead
