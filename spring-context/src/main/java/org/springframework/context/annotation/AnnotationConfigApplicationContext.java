@@ -49,6 +49,7 @@ import org.springframework.util.Assert;
 //TODO 注解扫描类
 public class AnnotationConfigApplicationContext extends GenericApplicationContext implements AnnotationConfigRegistry {
 
+    //解析注解的类
     private final AnnotatedBeanDefinitionReader reader;
 
     private final ClassPathBeanDefinitionScanner scanner;
@@ -151,7 +152,9 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
     // Implementation of AnnotationConfigRegistry
     //---------------------------------------------------------------------
 
+    //TODO 注册被{@link Configuration}标注的类
     /**
+     *
      * Register one or more annotated classes to be processed.
      * <p>Note that {@link #refresh()} must be called in order for the context
      * to fully process the new classes.

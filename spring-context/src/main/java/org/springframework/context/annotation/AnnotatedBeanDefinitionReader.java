@@ -120,6 +120,7 @@ public class AnnotatedBeanDefinitionReader {
 
 
 	/**
+	 * 注册一个或者多个被注解标注的类
 	 * Register one or more annotated classes to be processed.
 	 * <p>Calls to {@code register} are idempotent; adding the same
 	 * annotated class more than once has no additional effect.
@@ -155,6 +156,7 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
+     * 注册指定 bean class的类
 	 * Register a bean from the given bean class, deriving its metadata from
 	 * class-declared annotations.
 	 * @param annotatedClass the class of the bean
